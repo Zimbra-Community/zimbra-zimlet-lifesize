@@ -6,7 +6,7 @@
 
 ## Configuration de la zimlet
 
-* La configuration de la zimlet est réalisée par l'intermédiare du fichier : config_template.xml. Ce fichier définit, entre autre, l'api key lifesize pour la connexion avec le webservice de réservation lifesizecloud.com.
+* La configuration de la zimlet est réalisée par l'intermédiare du fichier : *config_template.xml*. Ce fichier définit, entre autre, l'api key lifesize pour la connexion avec le webservice de réservation lifesizecloud.com.
 de salle virtuelle
 
 		<global>	
@@ -32,8 +32,8 @@ de salle virtuelle
 		</global>
 		
 ## Configuration des messages textes
-* Tous les messages sont enregistrés dans templates/Startmeeting.template. C'est un fichier xml qui sera compilé par zimbra lors du déploiement pour produire une interface javascript qui servira à l'extraction et l'expansion des messages depuis la zimlet fr_cd21_startmeeting.js. 
-* Chaque template est identifié par un *id* unique contenant du texte (html ou text/plain), des variables identifiés par la syntaxe *<$=data.param$>* qui seront remplacées automatiquement lors des appels à la fonction zimbra :
+* Tous les messages sont enregistrés dans *templates/Startmeeting.template*. C'est un fichier xml qui sera compilé par zimbra lors du déploiement pour produire une interface javascript qui servira à l'extraction et l'expansion des messages depuis la zimlet *fr_cd21_startmeeting.js*. 
+* Chaque template est identifié par un *id* unique contenant du texte (html ou text/plain), et des variables identifiés par la syntaxe *<$=data.param$>* qui seront remplacées automatiquement lors des appels à la fonction zimbra :
 
 ```javascript
 AjxTemplate.expand("fr_cd21_startmeeting.templates.Startmeeting#about",
@@ -50,7 +50,7 @@ AjxTemplate.expand("fr_cd21_startmeeting.templates.Startmeeting#about",
 	</template>
 
 ## Convention de nommage
-* Cette zimlet à été développé pour le Conseil Département de la Côte d'Or. Le nommage des fichiers et des objets sont préfixés avec *cd21*. Il est conseillé de l'adapter en changeant tout ou partie du nom en fonction du context d'utilisatiion.
+* Cette zimlet à été développé pour le Conseil Départemental de la Côte-d'Or. Le nommage des fichiers et des objets sont préfixés avec *cd21*. Il est conseillé de l'adapter en changeant tout ou partie du nom en fonction du context d'utilisation.
 	
 # Intégration Eclipse
 * Le projet est modifiable depuis Eclipse (version 2020-12 - Eclipse IDE for Enterprise Java Developers) pour bénéficier d'un environnement de développement adapté.
