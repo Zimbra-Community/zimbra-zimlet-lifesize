@@ -90,7 +90,7 @@ la commande : StartMeeting.lifeSizeRunning=*0,1 ou 2*
 
 ![Zimlet déploiement](ressources/zimlet-image2.png)
 
-* Le fichier *package.xml* décrit la structure ainsi ue les fichiers à incorporrer dans l'archive. Il est exécutable depuis une console ou Eclipse en utilisant *Ant* pour produire un zip. Il faudra adapter ce scripte au context pour la génération du fichier final.
+* Le fichier *package.xml* décrit la structure ainsi que les fichiers à incorporrer dans l'archive. Il est exécutable depuis une console ou Eclipse en utilisant *Ant* pour produire un zip. Il faudra adapter ce scripte au context pour la génération du fichier final.
 
 	<zip destfile="${workspace.dir}/_ZimbraIntegration_/dist/fr_cd21_startmeeting.zip"
 	 	basedir="${workspace.dir}/${project.name}"
