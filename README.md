@@ -48,19 +48,46 @@ AjxTemplate.expand("fr_cd21_startmeeting.templates.Startmeeting#about",
 			<p>version : <$=data.version$></p>
 		</div>
 	</template>
+* le template identifié : *"startmeeting"* représente le message text/html  qui sera utilisé pour formater la zone de text de la réunion avec les identifiants de connexion.
+
+* le template identifié : *"startmeeting_text"* représente la version text/plain du messsage précédent qui sera utilisé si l'éditeur Zimbra est mode text/plain.
+
+## Activation, désactivation et mode simulation
+* Il est possible de definir 3 modes de fonctionnement de la zimlet à partir des clefs du fichier *fr_cd21_startmeeting.properties*, ainsi que le temps de réponse accordé au webservice lifesize.
+
+	# 0 : désactivé (valeur par défaut si non précisé), 
+	# 1 : debug (simulattion pas d'appel au websertvice) 
+	# 2 : running (en fonctionement)
+	StartMeetingZimlet_lifeSizeRunning=2
+	#
+	# Temp de réponse du webservice lifesize en ms
+	StartMeetingZimlet_lifeSizeTimeout=5000
+* Le mode simulation permet de mettre au point la zimlet sans appeler le webservive et réserver des salles virtuelles inutilement.
+	
+* Ce fichier de propriété n'oblige pas une désinstallation de la zimlet pour être pris en compte si des modification sont appporté en production. Un simple déploiement suffit.
+
+* Le changement de mode de fonctionnement de la zimlet peut être réalisé directement depuis le navigateur dans la console des outils de développement avec
+la commande : StartMeeting.lifeSizeRunning=*0,1 ou 2*
+
+![Zimlet mode fonctionnement](ressources/zimlet-image5.png)
+
+## Encodage
+* Tous les fichiers doivent être encodés en UTF-8 without bom, à l'exception des jsp, qui utilisent l'encodagee ISO-8859-1.
 
 ## Convention de nommage
 * Cette zimlet à été développé pour le Conseil Départemental de la Côte-d'Or. Le nommage des fichiers et des objets sont préfixés avec *cd21*. Il est conseillé de l'adapter en changeant tout ou partie du nom en fonction du context d'utilisation.
-	
-# Intégration Eclipse
-* Le projet est modifiable depuis Eclipse (version 2020-12 - Eclipse IDE for Enterprise Java Developers) pour bénéficier d'un environnement de développement adapté.
+
+# Outils de développement
+* J'ai personnellement une préférence pour Eclipse (version 2020-12 - Eclipse IDE for Enterprise Java Developers) pour bénéficier d'un environnement de développement adapté.
+* Tout autre editeur de texte respectant l'encodage préconisé.
 	
 ## Création de l'archive
 * Le déploiement pour zimbra necéssite de construire une archive (zip) qui sera téléchargée sur le serveur via l'interface d'administration.
+* **Attention** la structure de l'archive généré doit respecter la normalisation des zimlets. voir https://wiki.zimbra.com/wiki/Zimlet_Developers_Guide:Getting_Started
 
 ![Zimlet déploiement](ressources/zimlet-image2.png)
 
-* Le fichier *package.xml* décrit la structure et les fichiers à incorporrer dans l'archive. Il est exécutable depuis Eclipse en utilisant *Ant* pour produire un zip. Il faudra adapter ce scripte au context pour la génération du fichier final.
+* Le fichier *package.xml* décrit la structure ainsi ue les fichiers à incorporrer dans l'archive. Il est exécutable depuis une console ou Eclipse en utilisant *Ant* pour produire un zip. Il faudra adapter ce scripte au context pour la génération du fichier final.
 
 	<zip destfile="${workspace.dir}/_ZimbraIntegration_/dist/fr_cd21_startmeeting.zip"
 	 	basedir="${workspace.dir}/${project.name}"
