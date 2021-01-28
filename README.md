@@ -55,6 +55,7 @@ AjxTemplate.expand("fr_cd21_startmeeting.templates.Startmeeting#about",
 ## Activation, désactivation et mode simulation
 * Il est possible de definir 3 modes de fonctionnement de la zimlet à partir des clefs du fichier *fr_cd21_startmeeting.properties*, ainsi que le temps de réponse accordé au webservice lifesize.
 
+	```bash
 	# 0 : désactivé (valeur par défaut si non précisé), 
 	# 1 : debug (simulattion pas d'appel au websertvice) 
 	# 2 : running (en fonctionement)
@@ -62,6 +63,8 @@ AjxTemplate.expand("fr_cd21_startmeeting.templates.Startmeeting#about",
 	#
 	# Temp de réponse du webservice lifesize en ms
 	StartMeetingZimlet_lifeSizeTimeout=5000
+	```
+	
 * Le mode simulation permet de mettre au point la zimlet sans appeler le webservive et réserver des salles virtuelles inutilement.
 	
 * Ce fichier de propriété n'oblige pas une désinstallation de la zimlet pour être pris en compte si des modification sont appporté en production. Un simple déploiement suffit.
