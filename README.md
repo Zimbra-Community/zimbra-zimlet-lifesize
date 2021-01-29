@@ -5,7 +5,7 @@
 ![Zimlet réservation](ressources/zimlet-image1.png)
 
 ## Téléchargement
-* Vous pouvez téléchargez et déployer directement la vesrion : fr_cd21_startmeetiing.zip
+* Vous pouvez téléchargez et déployer directement la vesrion : fr_cd21_startmeeting.zip
 * Vous pouvez aussi télécharegr les sources avec la commande :
 
 	```bash
