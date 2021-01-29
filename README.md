@@ -1,6 +1,6 @@
 # zimbra-zimlet-lifesize
 * Cette Zimlet pour Zimbra 8.8.x permet la réservation de salle virtuelle Lifesize avec intégration des identifiants de connexion directement dans le text du message de la réunion.
-* Elle a été réalisé en ce basant sur le code de Barry de Graaff https://github.com/Zimbra-Community/startmeeting.
+* Merci à Barry de Graaff https://github.com/Zimbra-Community/startmeeting pour son code que j'ai adpaté à nos besoin.
 
 ![Zimlet réservation](ressources/zimlet-image1.png)
 
