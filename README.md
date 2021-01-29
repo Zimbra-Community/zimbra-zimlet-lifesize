@@ -4,6 +4,14 @@
 
 ![Zimlet réservation](ressources/zimlet-image1.png)
 
+## Téléchargement
+* Vous pouvez téléchargez et déployer directement la vesrion 1.0.0 : fr_cd21_startmeetiing-1.0.O.zip
+* Vous pouvez aussi télécharegr les sources avec la commande :
+
+	```bash
+	git clone https://github.com/Lavoillotte/zimbra-zimlet-lifesize
+	```
+
 ## Configuration de la zimlet
 
 * La configuration de la zimlet est réalisée par l'intermédiare du fichier : *config_template.xml*. Ce fichier définit, entre autre, l'api key lifesize pour la connexion avec le webservice de réservation lifesizecloud.com.
