@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<project name="builder" default="main">
+
+	<!--Initialisation  chemins -->
+	<basename property="project.name" file="${basedir}" />
+	<dirname property="workspace.dir" file="${basedir}" />
+	
+    <target name="main" description="Recette">
+		<property name="option.prebuilder" value="recette"/>
+		<echo message="Builder dir ${project.name}" />
+		<zip destfile="${workspace.dir}/_ZimbraIntegration_/dist/fr_cd21_startmeeting.zip"
+    	 	basedir="${workspace.dir}/${project.name}"
+    	 	includes="**/*.*"
+    	 	excludes=".project, .settings/**,old/** package.xml">
+    	 </zip>
+	</target>
+ </project>

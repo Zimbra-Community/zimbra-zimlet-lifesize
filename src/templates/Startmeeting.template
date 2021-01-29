@@ -1,0 +1,197 @@
+<template id="about">
+	<img class='img_cd21_startmeeting_dlg' src='<$=data.image$>'/>
+	<div>
+		<p>Zimlet : <$=data.name$></p>
+		<p>Auteur : Conseil départemental de la Côte d'Or -- NJL</p>
+		<p>Description : <$=data.description$></p>
+		<p>version : <$=data.version$></p>
+	</div>
+</template>
+<template id="startmeeting_keywords">
+connexion,visioconf.rence,salle,lifesize
+</template>
+<template id="startmeeting">
+	<div style="cd21_color: rgb(0, 0, 0);font-family: arial, helvetica, sans-serif;font-size:11 Pt;background-color: rgb(253, 253, 253);">
+		<input type="hidden" value="room=(<$=data.room$>)">
+		<span style="font-size: 16pt; font-weight: bold;font-style: italic;">Procédure de connexion à votre visioconférence</span>
+			<p style="padding-left:20px">
+					<span>
+						Voici la procédure de connexion à la visioconférence pour le sujet :<i><$=data.subject$></i>
+						<br>	
+						Le numéro de la salle virtuelle est : <$=data.room$>
+						<br>
+						Le mot de passe : <$=data.pin$>
+					</span>
+			</p>
+		<span style="font-size: 12pt; font-weight: bold;">Depuis un ordinateur:</span>
+		<p style="padding-left:20px">
+			<span>
+				Une manière simple est de lancer le lien suivant depuis
+				<span style="font-weight: bold;">Google Chrome (impératif):</span>
+				<br>
+				<a href="<$=data.host$>/<$=data.room$>"><$=data.host$>/<$=data.room$></a>
+				<br>
+				Puis de suivre les instructions.(complément de procédure en
+				suivant les liens ci-dessous)
+			</span>
+		</p>
+		<span style="font-weight: bold;">Depuis un smartphone:</span>
+			<p style="padding-left:20px">
+				Veuillez au préalable installer l'application lifesize depuis
+				votre Smartphone
+				<br>
+					Android :
+					<a
+						href="https://play.google.com/store/apps/details?id=com.mirial.lifesizecloud&hl=fr">en cliquant ici</a>
+					<br>
+					IOS (Apple) :
+					<a
+						href="https://apps.apple.com/fr/app/lifesize-video-conferencing/id854663434">en cliquant ici</a>
+					<br>
+					<ol>
+						<li>lancer l'application lifesize</li>
+						<li>rejoindre en tant qu'invité</li>
+						<li>saisir votre nom</li>
+						<li>saisir le numéro de la réunion (dans le champ poste) : <$=data.room$></li>
+						<li>saisir le mot de passe de la réunion :<$=data.pin$></li>
+					</ol>
+			</p>
+		<span style="font-weight: bold;">Depuis un Téléphone Fixe:</span>
+			<p style="padding-left:20px">
+					<span>Vous pouvez aussi rejoindre la visioconférence en audio
+									par téléphone au <$=data.telephone$></span>
+					<br>
+					<span>Puis composer le numéro de salle virtuelle suivi de #
+										puis le code suivi de #.</span>
+					<br>
+					<br>
+						
+			</p>
+										
+		<span style="font-weight: bold;">Depuis skype :</span>
+			<p style="padding-left:20px">
+				<span>Une manière simple est de lancer le lien suivant depuis votre application skype
+				<br>
+				<a href="<$=data.skypehost$>/<$=data.room$>">https://skype.lifesizecloud.com/<$=data.room$></a>
+				<br>
+				Puis de suivre les instructions
+				</span>							
+			</p>
+			
+		<span style="font-weight: bold;">Liens vers la procédure de connexion à l'outil Lifesize :</span>
+			<p style="padding-left:20px">
+				<span style="font-weight: bold;font-style: italic;">Pour tous types de terminaux :</span>
+				<br>
+				<a hrel="">Lien vers document de la procédure de connexion....</a>
+				<br>
+				<span style="font-weight: bold;font-style: italic;">Spécifiquement pour les terminaux iOS (Apple) :</span>
+				<br>
+				<a hrel="">Lien vers document de la procédure de connexion....</a>
+			</p>					
+	</div>
+</template>
+<template id="startmeeting_text">
+Procédure de connexion à votre visioconférence 
+
+	Voici la procédure de connexion à la visioconférence pour le sujet <$=data.subject$>
+
+	Le numéro de la salle virtuelle est : <$=data.room$>
+	Le mot de passe : <$=data.pin$> 
+
+Depuis un ordinateur: 
+	Une manière simple est de lancer le lien suivant depuis Google Chrome (impératif):
+Accèder à la réunion
+	<$=data.host$>/<$=data.room$>
+	Puis de suivre les instructions.(complément de procédure en suivant les liens ci-dessous) 
+
+Depuis un smartphone:
+	Veuillez au préalable installer l'application lifesize depuis votre Smartphone
+	Android : https://play.google.com/store/apps/details?id=com.mirial.lifesizecloud&hl=fr
+	IOS (Apple) : https://apps.apple.com/fr/app/lifesize-video-conferencing/id854663434
+
+	1.lancer l'application lifesize
+	2.rejoindre en tant qu'invité
+	3.saisir votre nom
+	4.saisir le numéro de la réunion (dans le champ poste) : <$=data.room$>
+	5.saisir le mot de passe de la réunion : <$=data.pin$>
+
+Depuis un Téléphone Fixe:
+	Vous pouvez aussi rejoindre la visioconférence en audio par téléphone au <$=data.telephone$>
+	Puis composer le numéro de salle virtuelle suivi de # puis le mot de passe suivi de #.
+
+Depuis skype:
+	Une manière simple est de lancer le lien suivant depuis votre application skype
+	
+Accèder à la réunion
+	<$=data.skypehost$>/<$=data.room$>
+	Puis de suivre les instructions.
+
+Liens vers la procédure de connexion à l'outil Lifesize :
+
+	Pour tous types de terminaux :
+	Procédures de connexion à Lifesize téléconférence  
+		Lien vers document de la procédure de connexion....
+		
+	Spécifiquement pour les terminaux iOS (Apple) :
+	Participer à une téléconférence Lifesize via un Iphone 
+		Lien vers document de la procédure de connexion....
+
+</template>
+<template id="message1">
+	Source : <$=data.param1$>, Erreur 1<br>
+	lifesize.statusCode : <$=data.param2$><br>
+	xhr.responseText : <$=data.param3$><br>
+	Le service lifesize n'est pas disponnible<br><br>
+	Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio<br>
+</template>
+<template id="message2">
+	Source : <$=data.param1$>, Erreur 2<br>
+	Le service lifesize n'à pas répondu dans le délai imparti de <$=data.param2$> ms<br><br>
+	Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio<br>
+</template>
+<template id="message3">
+	Source : <$=data.param1$>,  Erreur 3<br>
+	xhr.status : <$=data.param2$><br>
+	Le service lifesize n'est pas possible<br> 
+	xhr.responseText : <$=data.param3$><br><br>
+	Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio<br>
+</template>
+<template id="message4">
+	L'accés au service lifesize est désactivé<br><br>
+	Vous pouvez ré-essayer ultérieurment ou appeler le 6464 pour rêserver une visio<br>
+</template>
+<template id="message5">
+	<span>Vous devez saisir un sujet avant de réserver une salle virtuelle</span>
+</template>
+<template id="message6">
+	<p>Une salle virtuelle à déjà été créé pour cette réunion. Pour la modifier, vous devez supprimer cette réunion et 
+	recommencer</p>
+</template>
+<template id="message7">
+	<p><$=data.param1$>La salle virtuelle a bien été créée pour cette réunion.</p>
+	<p>Cette réservation est unique, et ne pourra être modifiée que par la suppression de cette réunion.</p>
+</template>
+
+<template id="message10">
+	<p>ATTENTION Vous pouvez devez saisir un sujet avant de réserver une salle virtuelle</p>
+</template>
+<template id="exception1">
+	Source : <$=data.param1$>,  Exception 1 <br>
+	L'exception : <$=data.param2$> Est survenue à l'appel du service de réservation lifesize<br><br>
+	Vous pouvez ré-essayer ultérieurment ou appeler le 6464 pour réserver une visio<br>
+</template>
+<template id="confirme_create_visio">
+	<img class='img_cd21_startmeeting_dlg' src='<$=data.image$>'/>
+	<div class='img_cd21_startmeeting_dlg_size'>
+		<p>Voulez-vous réserver une salle visio LifeSize pour votre réunion : <b><$=data.subject$></b> ?</p>
+	</div>
+</template>
+<template id="warning_confirme_create_visio">
+	<img class='img_cd21_startmeeting_dlg' src='<$=data.image$>'/>
+	<div class='img_cd21_startmeeting_dlg_size'>
+		<p>Voulez-vous réserver une salle visio LifeSize pour votre réunion : <b><$=data.subject$></b> ?</p>
+		<br/>
+		<p><b>Attention :</b> Si vous continuez, le texte actuel présent dans le corps de l'invitation va être remplacé par les identifiants de connexion de la salle LifeSize.</p>
+	</div>
+</template>
+

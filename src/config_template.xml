@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zimletConfig name="fr_cd21_startmeeting" version="1.0">
+	<!-- ATTENTION toute modification dans ce fichier nécessite de ré-installer
+		la zimlet (suppression, déploiement)-->
+	<global>	
+		<!-- Url de connexion vers lifesizecloud.com  -->
+		<property name="lifeSizeCreateMeetingURL">https://meetingapi.lifesizecloud.com/meeting/create</property>
+		<property name="lifeSizeConnectMeetingURL">https://call.lifesizecloud.com</property>
+		<property name="lifeSizeConnectSkypeMeetingURL">https://skype.lifesizecloud.com</property>
+
+		<!-- API key pour l'utilisation du webservice lifesizecloud.com -->
+		<property name="lifeSizeMeetingAPIKey">123456</property>
+		<property name="lifeSizeConnectAudio">01 01 01 01 01</property>
+		<!-- Code extension de l'utilisateur lifesize pour lequel la réservation est associée : psi@cotedor.fr -->	
+		<property name="lifeSizeUserExtension">123456</property>
+		<!-- Nom généric apparaissant dans le libellé de la réservation côté lifesizecloud.com -->
+		<property name="lifeSizeMeetingOwner">Zimlet</property>
+		<!-- Configuration du type de réservation de salle virtuelle --> 
+		<property name="lifeSizeTempMeeting">true</property>
+		<property name="lifeSizeHiddenMeeting">false</property>
+		<property name="lifeSizePrivateMeeting">true</property>
+	</global>
+</zimletConfig>

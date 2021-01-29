@@ -1,0 +1,24 @@
+/**
+ * Les icones pour Zimbra doivent commencer par 'Img'. Quand on renseigne une image sous forme d'une classe pour zimbra
+ il faut donner uniquement la fin :
+ ex : cd21_startmeeting-panelIcon et non pas Imgcd21_startmeeting-panelIcon
+*/
+.Imgcd21_startmeeting-panelIcon {
+	 background: url("lifesize.png") no-repeat 0 0;
+	 background-size: 100%;
+	 width: 18px;
+	 height: 18px;
+	 overflow: hidden;
+}
+.img_cd21_startmeeting_dlg {
+	width:128px;
+	margin:10px;
+	margin-left:0px;
+	float: left;
+}
+.img_cd21_startmeeting_dlg_size {
+	padding-top: 10px;
+	width: 450px;
+	height: 100%;
+	min-height: 130px;
+}

@@ -1,0 +1,21 @@
+<!--
+	A  propos des templates
+	il faut ajouter la ligne d'include du template.
+	le fichier templates/Startmeeting.template.js n'existe pas, il sera
+	compilé et généré automatiquement lors du déploiement
+-->
+<zimlet name="fr_cd21_startmeeting" version="1.0.0" label="StartMeeting" 
+		description="Réservation de salle virtuelle LifeSize">
+   <summary></summary>
+   <resource>lifesize.png</resource>
+   <include>fr_cd21_startmeeting.js</include>
+   <include>templates/Startmeeting.template.js</include>
+   <handlerObject>fr_cd21_startmeeting_HandlerObject</handlerObject>
+   <includeCSS>fr_cd21_startmeeting.css</includeCSS>
+   <zimletPanelItem label="Zimlet Lifesize" icon="cd21_startmeeting-panelIcon">
+        <toolTipText>Click droit pour afficher le menu</toolTipText>
+        <contextMenu>
+            <menuItem label="A propos" id="STARTMEETING_ABOUT" />
+        </contextMenu>
+    </zimletPanelItem>
+</zimlet>
