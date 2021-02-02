@@ -27,7 +27,8 @@
  *
  * Zimlet
  * 			Version	
- *			26/01/2021	1.0.0	Adaptation du scripte d'origine, création d'un template pour enregistrter
+ *			26/01/2021	1.0.1	Ajustement messages, utilisation de AjxStringUtil.htmlEncode() à la place d'une fonction interne'
+ *						1.0.0	Adaptation du scripte d'origine, création d'un template pour enregistrter
  *								les messages,configuration.
  */
 
@@ -74,7 +75,7 @@ StartMeeting.prototype.Format = function(text) {
 /**
  * Debugger : affiche un message dans la console de debogage zimbra côté client ou
  *			  dans la console du nagivateur
- *            depuis IE11 : https://zimbratest.cotedor.fr/?debug=1
+ *            depuis IE11 : https://zimbratest.domaine.fr/?debug=1
  */
 StartMeeting.prototype.debug = function (level, message) {
 	try {
@@ -96,16 +97,6 @@ StartMeeting.prototype.debug = function (level, message) {
 StartMeeting.prototype.init = function () {
 	try {
 		console.log("debut StartMeeting.prototype.init");
-		
-		if (!String.prototype.encodeHTML) {
-			  String.prototype.encodeHTML = function () {
-			    return this.replace(/&/g, '&amp;')
-			               .replace(/</g, '&lt;')
-			               .replace(/>/g, '&gt;')
-			               .replace(/"/g, '&quot;')
-			               .replace(/'/g, '&apos;');
-			  };
-		}
 		
 		var zimletInstance = appCtxt._zimletMgr
 				.getZimletByName('fr_cd21_startmeeting').handlerObject;
@@ -259,6 +250,7 @@ StartMeeting.prototype.IsEditorHTML = function(controller) {
 StartMeeting.prototype.ContentRoom = function(controller,words) {
 	var content=controller._composeView.getHtmlEditor().getContent();
 	var pattern="";
+	// Constitution de la regex
 	words.forEach((function(element) {
 		pattern+=this.Format("({0})+(.|[\r\n])*",element);	
 	}).bind(this));
@@ -319,7 +311,19 @@ StartMeeting.prototype.SetStatus = function(text, type) {
 			ZmToast.FADE_OUT];
 	appCtxt.getAppController().setStatusMsg(text, type, null, transitions);
 };
-
+/**
+ * Renvoie un titre correspondant au style
+ */
+StartMeeting.prototype.GetTitleStyle = function(style) {
+	var zimletInstance = appCtxt._zimletMgr
+			.getZimletByName('fr_cd21_startmeeting').handlerObject;
+	if (style==DwtMessageDialog.INFO_STYLE)
+		return zimletInstance.getMessage('StartMeetingZimlet_informatif');
+	else if  (style==DwtMessageDialog.CRITICAL_STYLE)
+		return zimletInstance.getMessage('StartMeetingZimlet_criticalerror');
+	else 
+		 return zimletInstance.getMessage('StartMeetingZimlet_warning');
+}
 /**
  * A propos de cette zimlet
  */
@@ -327,6 +331,7 @@ StartMeeting.prototype.AboutDialog =  function() {
 	var zimletInstance = appCtxt._zimletMgr
 			.getZimletByName('fr_cd21_startmeeting').handlerObject;
 	var dialog = appCtxt.getMsgDialog(); // get a simple message dialog
+	var title=this.GetTitleStyle( DwtMessageDialog.INFO_STYLE);
 	var dataTemplate={
 		image:zimletInstance.getResource("lifesize.png"),
 		name:this._zimletContext.name,
@@ -336,7 +341,7 @@ StartMeeting.prototype.AboutDialog =  function() {
 	var message=AjxTemplate.expand("fr_cd21_startmeeting.templates.Startmeeting#about", dataTemplate);
   	dialog.reset(); // reset the dialog
 
-  	dialog.setMessage(message, DwtMessageDialog.INFO_STYLE); // set the message "info" style
+  	dialog.setMessage(message, DwtMessageDialog.INFO_STYLE,title); // set the message "info" style
 
   	dialog.popup(); // display the dialog
 
@@ -347,10 +352,10 @@ StartMeeting.prototype.AboutDialog =  function() {
  */
 StartMeeting.prototype.MessageDialog = function(message, style) {
 	var dialog = appCtxt.getMsgDialog(); // get a simple message dialog
-	
+	var title=this.GetTitleStyle(style || DwtMessageDialog.INFO_STYLE);
   	dialog.reset(); // reset the dialog
 
-  	dialog.setMessage(message, style || DwtMessageDialog.INFO_STYLE); // set the message "info" style
+  	dialog.setMessage(message, style || DwtMessageDialog.INFO_STYLE,title); // set the message "info" style
 
   	dialog.popup(); // display the dialog
 
@@ -360,14 +365,20 @@ StartMeeting.prototype.MessageDialog = function(message, style) {
  */
 StartMeeting.prototype.ErrorDialog = function(message) {
 	var dialog = appCtxt.getErrorDialog(); // get a simple message dialog
-
+	var title=this.GetTitleStyle(DwtMessageDialog.CRITICAL_STYLE);
   	dialog.reset(); // reset the dialog
 
-  	dialog.setMessage(message, DwtMessageDialog.CRITICAL_STYLE); // set the message "info" style
+  	dialog.setMessage(message, DwtMessageDialog.CRITICAL_STYLE,title); // set the message "info" style
 
   	dialog.popup(); // display the dialog
 
 };
+/**
+ * Montre ou cache le détail d'un message de la boite de dialog (appelé via Startmeeting.template)
+ */
+StartMeeting.prototype.DetailMessage = function(divElement) {
+	divElement.style.display =(divElement.style.display === "none" ? "block":"none");
+}
 /**
  * Vérifie si le service est actif
  * Vérifie que la réunion en cours possède un sujet
@@ -423,7 +434,7 @@ StartMeeting.prototype.ConfirmeDialog = function(controller) {
 
 	//
 	// Encodage du sujet pour ne pas "casser" le document si editor html
-	var temp=subject.encodeHTML();
+	var temp=AjxStringUtil.htmlEncode(subject,false);
 	var dataTemplate = {subject: temp,image:zimletInstance.getResource("lifesize.png")};
 	var html;
 	
@@ -459,7 +470,6 @@ StartMeeting.prototype.CancelBtn = function() {
 	}
 };
 
-
 /** 
  * Création de l'objet avec les paramètres de création d'une salle virtuelle
  */
@@ -469,10 +479,7 @@ StartMeeting.prototype.CreateMeetingRequest = function(controller, access_pin) {
 		
 		// Formatage du libellé qui apparaitra dans l'interface web lifesizecloud.com
 		// NomCréateurVisio sujet (Demandeur)
-		displayName: this.Format("{0} {1} ({2})",
-			StartMeeting.lifeSizeMeetingOwner,
-			this.GetAppointementSubject(controller,"pas de sujet"),
-			StartMeeting.fullname),     
+		displayName: this.GetAppointementDisplayName(controller),     
 			
 		description: this.GetAppointementSubject(controller,"pas de sujet"),
 		tempMeeting: StartMeeting.lifeSizeTempMeeting.toString(),     
@@ -481,6 +488,22 @@ StartMeeting.prototype.CreateMeetingRequest = function(controller, access_pin) {
 	}
 	return meetingParams;
 }
+
+/**
+ * Construction du libellé (unique) qui sera utilisé côté lifesizecloud pour le nom de la réunion
+ * ajoute au sujet les 4 derniers chiffres du timestamp de la date courrante
+ */
+StartMeeting.prototype.GetAppointementDisplayName = function(controller) {
+
+	var start=new Date().getTime();
+	var timestamp=String(start);
+	return this.Format("{0} {1}-{2} ({3})",
+			StartMeeting.lifeSizeMeetingOwner,			
+			this.GetAppointementSubject(controller,"pas de sujet"),
+			timestamp.substring(timestamp.length-4),
+			StartMeeting.fullname);
+}
+
 /**
 *
 * Renvoie la date et l'heure de début du rendez-vous courrant

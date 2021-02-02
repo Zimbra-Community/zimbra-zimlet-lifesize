@@ -138,60 +138,76 @@ Liens vers la procédure de connexion à l'outil Lifesize :
 
 </template>
 <template id="message1">
-	Source : <$=data.param1$>, Erreur 1<br>
-	lifesize.statusCode : <$=data.param2$><br>
-	xhr.responseText : <$=data.param3$><br>
-	Le service lifesize n'est pas disponnible<br><br>
-	Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio<br>
+	<p>La réservation de votre visioconférence lifesize n'a pas abouti. Voir le détail pour plus d'information.</p>
+	<p>Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio.</p>
+	
+	<button onclick="StartMeeting.prototype.DetailMessage(document.getElementById('div_startmeeting_dlg_detail'))">Détail...</button>
+	<div class="div_startmeeting_dlg_detail" style="display:none;" id="div_startmeeting_dlg_detail">
+	<p>Source : <$=data.param1$>, Erreur 1</p>
+	<P>lifesize.statusCode : <$=data.param2$></P>
+	<p>xhr.responseText : <$=data.param3$></p>
+	</div>
 </template>
-<template id="message2">
-	Source : <$=data.param1$>, Erreur 2<br>
-	Le service lifesize n'à pas répondu dans le délai imparti de <$=data.param2$> ms<br><br>
-	Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio<br>
+<template id="message2">	
+	<p>Le service de réservation de visioconférence lifesize n'à pas répondu dans le délai imparti. Voir le détail pour plus d'information.</p>
+	<p>Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio.</p>
+	<button onclick="StartMeeting.prototype.DetailMessage(document.getElementById('div_startmeeting_dlg_detail'))">Détail...</button>
+	<div class="div_startmeeting_dlg_detail" style="display:none;" id="div_startmeeting_dlg_detail">
+	<p>Délai : <$=data.param2$> ms</p>
+	<p>Source : <$=data.param1$>, Erreur 2</p>
+	</div>
 </template>
 <template id="message3">
-	Source : <$=data.param1$>,  Erreur 3<br>
-	xhr.status : <$=data.param2$><br>
-	Le service lifesize n'est pas possible<br> 
-	xhr.responseText : <$=data.param3$><br><br>
-	Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio<br>
+	<p>Une erreure est survenue durant la réservation de votre visioconférence. Voir le détail pour plus d'information.</p>
+	<p>Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio.</p>
+	
+	<button onclick="StartMeeting.prototype.DetailMessage(document.getElementById('div_startmeeting_dlg_detail'))">Détail...</button>
+	<div class="div_startmeeting_dlg_detail" style="display:none;" id="div_startmeeting_dlg_detail">
+	<p>Source : <$=data.param1$>,  Erreur 3</p>
+	<p>xhr.status : <$=data.param2$></p>
+	<p>hr.responseText : <$=data.param3$></p>
+	</div>
 </template>
 <template id="message4">
-	L'accés au service lifesize est désactivé<br><br>
-	Vous pouvez ré-essayer ultérieurment ou appeler le 6464 pour rêserver une visio<br>
+	<p>L'accés au service de réservation de visioconférence lifesize est désactivé.</p>
+	<p>Vous pouvez ré-essayer ultérieurment ou appeler le 6464 pour rêserver une visio.</p>
 </template>
 <template id="message5">
-	<span>Vous devez saisir un sujet avant de réserver une salle virtuelle</span>
+	<span>Vous devez saisir un sujet avant de réserver une salle de visioconférence.</span>
 </template>
 <template id="message6">
-	<p>Une salle virtuelle à déjà été créé pour cette réunion. Pour la modifier, vous devez supprimer cette réunion et 
-	recommencer</p>
+	<p>Une visioconférence à déjà été créé pour cette réunion. Pour la modifier, vous devez supprimer cette réunion et 
+	recommencer.</p>
 </template>
 <template id="message7">
-	<p><$=data.param1$>La salle virtuelle a bien été créée pour cette réunion.</p>
-	<p>Cette réservation est unique, et ne pourra être modifiée que par la suppression de cette réunion.</p>
+	<p><$=data.param1$>La visioconférence a bien été créée pour cette réunion.</p>
+	<p>Cette réservation est unique, et ne pourra être modifiée que par la création d'une nouvelle réunion.</p>
 </template>
 
 <template id="message10">
-	<p>ATTENTION Vous pouvez devez saisir un sujet avant de réserver une salle virtuelle</p>
+	<p>ATTENTION Vous devez saisir un sujet avant de réserver une visioconférence.</p>
 </template>
 <template id="exception1">
-	Source : <$=data.param1$>,  Exception 1 <br>
-	L'exception : <$=data.param2$> Est survenue à l'appel du service de réservation lifesize<br><br>
-	Vous pouvez ré-essayer ultérieurment ou appeler le 6464 pour réserver une visio<br>
+	<p>Une exception est survenue durant la réservation de votre visioconférence. Voir le détail pour plus d'information.</p>
+	<p>Vous pouvez ré-essayer ultérieurment ou appéler le 6464 pour réserver une visio.</p>
+	
+	<button onclick="StartMeeting.prototype.DetailMessage(document.getElementById('div_startmeeting_dlg_detail'))">Détail...</button>
+	<div class="div_startmeeting_dlg_detail" style="display:none;" id="div_startmeeting_dlg_detail">
+	<p>Source : <$=data.param1$>,  Exception 1</p>
+	<p>L'exception : <$=data.param2$></p>
+	</div>
 </template>
 <template id="confirme_create_visio">
 	<img class='img_cd21_startmeeting_dlg' src='<$=data.image$>'/>
 	<div class='img_cd21_startmeeting_dlg_size'>
-		<p>Voulez-vous réserver une salle visio LifeSize pour votre réunion : <b><$=data.subject$></b> ?</p>
+		<p>Voulez-vous réserver une visioconférence LifeSize pour votre réunion : <b><$=data.subject$></b> ?</p>
 	</div>
 </template>
 <template id="warning_confirme_create_visio">
 	<img class='img_cd21_startmeeting_dlg' src='<$=data.image$>'/>
 	<div class='img_cd21_startmeeting_dlg_size'>
-		<p>Voulez-vous réserver une salle visio LifeSize pour votre réunion : <b><$=data.subject$></b> ?</p>
+		<p>Voulez-vous réserver une visioconférence LifeSize pour votre réunion : <b><$=data.subject$></b> ?</p>
 		<br/>
-		<p><b>Attention :</b> Si vous continuez, le texte actuel présent dans le corps de l'invitation va être remplacé par les identifiants de connexion de la salle LifeSize.</p>
+		<p><b>Attention :</b> Si vous continuez, le texte actuel présent dans le corps de l'invitation va être remplacé par les identifiants de connexion à la visioconférence LifeSize.</p>
 	</div>
 </template>
-

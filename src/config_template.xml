@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zimletConfig name="fr_cd21_startmeeting" version="1.0">
-	<!-- ATTENTION toute modification dans ce fichier nécessite de ré-installer
-		la zimlet (suppression, déploiement)-->
+	<!-- ATTENTION toute modification dans ce fichier nécessite soit de ré-installer
+		la zimlet : suppression, déploiement 
+		ou d'utiliser la commande zmzimletctl configure config_template.xml -->
 	<global>	
 		<!-- Url de connexion vers lifesizecloud.com  -->
 		<property name="lifeSizeCreateMeetingURL">https://meetingapi.lifesizecloud.com/meeting/create</property>
