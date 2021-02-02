@@ -1,17 +1,17 @@
 # zimbra-zimlet-lifesize
 * Cette Zimlet pour Zimbra 8.8.x permet la réservation de salle virtuelle Lifesize avec intégration des identifiants de connexion directement dans le text du message de la réunion.
-* Merci à Barry de Graaff https://github.com/Zimbra-Community/startmeeting pour son code que j'ai adpaté à nos besoin.
+* Elle a été réalisé en ce basant sur le code de Barry de Graaff https://github.com/Zimbra-Community/startmeeting.
 
 ![Zimlet réservation](ressources/zimlet-image1.png)
 
 ## Téléchargement
-* Vous pouvez téléchargez et déployer directement la vesrion : fr_cd21_startmeeting.zip
+* Vous pouvez téléchargez et déployer directement la vesrion 1.0.0 : fr_cd21_startmeetiing-1.0.O.zip
 * Vous pouvez aussi télécharegr les sources avec la commande :
 
 	```bash
-	git clone https://github.com/Lavoillotte/zimbra-zimlet-lifesize
+	git clone https://github.com/Zimbra-Community/startmeeting
 	```
-
+	
 ## Configuration de la zimlet
 
 * La configuration de la zimlet est réalisée par l'intermédiare du fichier : *config_template.xml*. Ce fichier définit, entre autre, l'api key lifesize pour la connexion avec le webservice de réservation lifesizecloud.com.
@@ -113,12 +113,12 @@ la commande : StartMeeting.lifeSizeRunning=*0,1 ou 2*
 
 ```bash
   su - zimbra
-  zmprov mc cos-cotedor-dsi +zimbraProxyAllowedDomains *.lifesizecloud.com
+  zmprov mc cos-domaine-dsi +zimbraProxyAllowedDomains *.lifesizecloud.com
   # pour une personne (mais ne fonctionne pas)
-  # zmprov ma nicolas.Lavoillotte@cotedor.fr +zimbraProxyAllowedDomains *.lifesizecloud.com(ne fonctionne pas!)
+  # zmprov ma nicolas.Lavoillotte@domaine.fr +zimbraProxyAllowedDomains *.lifesizecloud.com(ne fonctionne pas!)
    
   # vérification :
-  zmprov gc cos-cotedor-dsi | grep zimbraProxyAllowedDomains
+  zmprov gc cos-domaine-dsi | grep zimbraProxyAllowedDomains
   zimbraProxyAllowedDomains: *.lifesizecloud.com
   ```
   
@@ -137,7 +137,16 @@ la commande : StartMeeting.lifeSizeRunning=*0,1 ou 2*
 
 ![Zimlet réservation](ressources/zimlet-image2.png)
 
-* **Remarque :** Si des modifications sont apportées dans  le fichier *config_template.xml* après déploiement, et pour qu'elles soient prisent en compte, c'est le seul moyen que j'ai trouvé, c'est de supprimer puis de réinstaller la zimlet. Cette remarque est valable aussi pour les servlets (jsp), qui sont compilées par jetty une seule fois au déploiement.
+* **Remarque :** Si des modifications sont apportées dans le fichier *config_template.xml* après déploiement, et pour qu'elles soient prisent en compte, il faudra recharger la configuration avec la commmande zimbra :
+
+```bash
+  su - zimbra
+  # extraction de la configuration
+  zmzimletctl getConfigTemplate fr_cd21_startmeeting.zip
+  # installation de la configuration
+  zmzimletctl configure config_template.xml
+  ```
+  
 
 ![Zimlet réservation](ressources/zimlet-image4.png)
 
