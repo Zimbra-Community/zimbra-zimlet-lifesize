@@ -2,7 +2,7 @@
 * This Zimlet for Zimbra 8.8.x allows the reservation of Lifesize virtual rooms with integration of login credentials directly in the text of the meeting message.
 * It was made based on code from Barry de Graaff https://github.com/Zimbra-Community/startmeeting.
 
-! [Zimlet reservation] (resources / zimlet-image1.png)
+![Zimlet reservation](resources/zimlet-image1.png)
 
 ## Download
 * You can download, deploy and test vesrion 1.0.0 directly: fr_cd21_startmeetiing.zip
