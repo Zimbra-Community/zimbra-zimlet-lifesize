@@ -2,7 +2,7 @@
 * This Zimlet for Zimbra 8.8.x allows the reservation of Lifesize virtual rooms with integration of login credentials directly in the text of the meeting message.
 * It was made based on code from Barry de Graaff https://github.com/Zimbra-Community/startmeeting.
 
-![Zimlet reservation](ressources/zimlet-image1.png)
+![Zimlet reservation](https://raw.githubusercontent.com/Zimbra-Community/zimbra-zimlet-lifesize/main/ressources/zimlet-image1.png)
 
 ## Download
 * You can download, deploy and test vesrion 1.0.0 directly: fr_cd21_startmeetiing.zip
@@ -81,7 +81,7 @@ AjxTemplate.expand ("fr_cd21_startmeeting.templates.Startmeeting # about",
 * Changing the zimlet operating mode can be done directly from the browser in the developer tools console with
 the command: StartMeeting.lifeSizeRunning = * 0,1 or 2 *
 
-! [Zimlet operating mode] (resources / zimlet-image5.png)
+![Zimlet operating mode](https://raw.githubusercontent.com/Zimbra-Community/zimbra-zimlet-lifesize/main/ressources/zimlet-image5.png)
 
 ## Encoding
 * All files must be encoded in UTF-8 without bom, except jsp, which use ISO-8859-1 encoding.
@@ -97,7 +97,7 @@ the command: StartMeeting.lifeSizeRunning = * 0,1 or 2 *
 * Deployment for zimbra requires building an archive (zip) which will be uploaded to the server via the administration interface.
 * ** Warning ** the structure of the generated archive must respect the standardization of zimlets. see https://wiki.zimbra.com/wiki/Zimlet_Developers_Guide:Getting_Started
 
-! [Zimlet deployment] (resources / zimlet-image2.png)
+![Zimlet deployment](https://raw.githubusercontent.com/Zimbra-Community/zimbra-zimlet-lifesize/main/ressources/zimlet-image2.png)
 
 * The * package.xml * file describes the structure as well as the files to be incorporated into the archive. It is executable from a console or Eclipse using * Ant * to produce a zip. This script will have to be adapted to the context for the generation of the final file.
 
@@ -116,15 +116,15 @@ the command: StartMeeting.lifeSizeRunning = * 0,1 or 2 *
   su - zimbra
   zmprov mc cos-domain-dsi + zimbraProxyAllowedDomains * .lifesizecloud.com
   # for one person (but does not work)
-  # zmprov ma nicolas.Lavoillotte@domaine.fr + zimbraProxyAllowedDomains * .lifesizecloud.com (does not work!)
+  # zmprov ma nicolas.Lavoillotte@domaine.fr +zimbraProxyAllowedDomains *.lifesizecloud.com (does not work!)
    
   # check:
   zmprov gc cos-domain-dsi | grep zimbraProxyAllowedDomains
-  zimbraProxyAllowedDomains: * .lifesizecloud.com
+  zimbraProxyAllowedDomains: *.lifesizecloud.com
   `` ``
   
 * or from the administration interface
-! [Zimlet permission] (resources / zimlet-image3.png)
+![Zimlet permission](https://raw.githubusercontent.com/Zimbra-Community/zimbra-zimlet-lifesize/main/ressources/zimlet-image3.png)
 
 * Reloading the mailstore to take into account the changes
 
@@ -136,7 +136,7 @@ the command: StartMeeting.lifeSizeRunning = * 0,1 or 2 *
 ## Deployment and update
 * The deployment will be carried out directly from the administration interface. With the deploy option in the Zimbra server configuration, Zimlet section.
 
-! [Zimlet reservation] (resources / zimlet-image2.png)
+![Zimlet reservation](https://raw.githubusercontent.com/Zimbra-Community/zimbra-zimlet-lifesize/main/ressources/zimlet-image2.png)
 
 * ** Note: ** If modifications are made to the * config_template.xml * file after deployment, and for them to be taken into account, the configuration will have to be reloaded with the zimbra command:
 
@@ -149,4 +149,4 @@ the command: StartMeeting.lifeSizeRunning = * 0,1 or 2 *
   `` ``
   
 
-! [Zimlet reservation] (resources / zimlet-image4.png)
+![Zimlet reservation](https://raw.githubusercontent.com/Zimbra-Community/zimbra-zimlet-lifesize/main/ressources/zimlet-image4.png)
