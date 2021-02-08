@@ -1,153 +1,152 @@
 # zimbra-zimlet-lifesize
-* Cette Zimlet pour Zimbra 8.8.x permet la réservation de salle virtuelle Lifesize avec intégration des identifiants de connexion directement dans le text du message de la réunion.
-* Elle a été réalisé en ce basant sur le code de Barry de Graaff https://github.com/Zimbra-Community/startmeeting.
+* This Zimlet for Zimbra 8.8.x allows the reservation of Lifesize virtual rooms with integration of login credentials directly in the text of the meeting message.
+* It was made based on code from Barry de Graaff https://github.com/Zimbra-Community/startmeeting.
 
-![Zimlet réservation](ressources/zimlet-image1.png)
+! [Zimlet reservation] (resources / zimlet-image1.png)
 
-## Téléchargement
-* Vous pouvez télécharger, déployer et tester directement la vesrion 1.0.0 : fr_cd21_startmeetiing.zip
-* Elle est paramètrée en mode simulation (aucun appel au web service).
-* Vous pouvez aussi télécharegr les sources avec la commande :
+## Download
+* You can download, deploy and test vesrion 1.0.0 directly: fr_cd21_startmeetiing.zip
+* It is configured in simulation mode (no call to the web service).
+* You can also download the sources with the command:
 
-	```bash
+	`` bash
 	git clone https://github.com/Zimbra-Community/startmeeting
-	```
+	`` ``
 	
-## Configuration de la zimlet
+## Zimlet configuration
 
-* La configuration de la zimlet est réalisée par l'intermédiare du fichier : *config_template.xml*. Ce fichier définit, entre autre, l'api key lifesize pour la connexion avec le webservice de réservation lifesizecloud.com.
-de salle virtuelle
+* The configuration of the zimlet is carried out through the intermediary of the file: * config_template.xml *. This file defines, among other things, the key lifesize API for connection with the lifesizecloud.com reservation web service.
+virtual room
 
 		<global>	
-			<!-- Url de connexion vers lifesizecloud.com  -->
-			<property name="lifeSizeCreateMeetingURL">https://meetingapi.lifesizecloud.com/meeting/create</property>
-			<property name="lifeSizeConnectMeetingURL">https://call.lifesizecloud.com</property>
-			<property name="lifeSizeConnectSkypeMeetingURL">https://skype.lifesizecloud.com</property>
+			<! - Connection url to lifesizecloud.com ->
+			<property name = "lifeSizeCreateMeetingURL"> https://meetingapi.lifesizecloud.com/meeting/create </property>
+			<property name = "lifeSizeConnectMeetingURL"> https://call.lifesizecloud.com </property>
+			<property name = "lifeSizeConnectSkypeMeetingURL"> https://skype.lifesizecloud.com </property>
 	
-			<!-- API key pour l'utilisation du webservice lifesizecloud.com -->
-			<property name="lifeSizeMeetingAPIKey">123456789</property>
-			<property name="lifeSizeConnectAudio">01 01 01 01 01</property>
+			<! - API key for using the lifesizecloud.com webservice ->
+			<property name = "lifeSizeMeetingAPIKey"> 123456789 </property>
+			<property name = "lifeSizeConnectAudio"> 01 01 01 01 01 </property>
 			
-			<!-- Code extension de l'utilisateur lifesize pour lequel la réservation est associée -->	
-			<property name="lifeSizeUserExtension">123456</property>
+			<! - Extension code of the lifesize user for which the reservation is associated ->	
+			<property name = "lifeSizeUserExtension"> 123456 </property>
 			
-			<!-- Nom généric apparaissant dans le libellé de la réservation côté lifesizecloud.com -->
-			<property name="lifeSizeMeetingOwner">Zimlet</property>
+			<! - Generic name appearing in the description of the reservation on the lifesizecloud.com side ->
+			<property name = "lifeSizeMeetingOwner"> Zimlet </property>
 			
-			<!-- Configuration du type de réservation de salle virtuelle --> 
-			<property name="lifeSizeTempMeeting">true</property>
-			<property name="lifeSizeHiddenMeeting">false</property>
-			<property name="lifeSizePrivateMeeting">true</property>
+			<! - Configuration of the type of virtual room reservation -> 
+			<property name = "lifeSizeTempMeeting"> true </property>
+			<property name = "lifeSizeHiddenMeeting"> false </property>
+			<property name = "lifeSizePrivateMeeting"> true </property>
 		</global>
 		
-## Configuration des messages textes
-* Tous les messages sont enregistrés dans *templates/Startmeeting.template*. C'est un fichier xml qui sera compilé par zimbra lors du déploiement pour produire une interface javascript qui servira à l'extraction et l'expansion des messages depuis la zimlet *fr_cd21_startmeeting.js*. 
-* Chaque template est identifié par un *id* unique contenant du texte (html ou text/plain), et des variables identifiés par la syntaxe *<$=data.param$>* qui seront remplacées automatiquement lors des appels à la fonction zimbra :
+## Configuration of text messages
+* All messages are saved in * templates / Startmeeting.template *. It is an xml file that will be compiled by zimbra during deployment to produce a javascript interface that will be used to extract and expand messages from the * fr_cd21_startmeeting.js * zimlet.
+* Each template is identified by a unique * id * containing text (html or text / plain), and variables identified by the syntax * <$ = data.param $> * which will be replaced automatically during calls to the zimbra function :
 
-```javascript
-AjxTemplate.expand("fr_cd21_startmeeting.templates.Startmeeting#about",
-						{name:"Zimlet",description:"MaZimlet",version:"1.0.0"});
-```
+`` javascript
+AjxTemplate.expand ("fr_cd21_startmeeting.templates.Startmeeting # about",
+						{name: "Zimlet", description: "MyZimlet", version: "1.0.0"});
+`` ``
 	
-	<template id="about">
-		<img class='img_cd21_startmeeting_dlg' src='<$=data.image$>'/>
+	<template id = "about">
+		<img class = 'img_cd21_startmeeting_dlg' src = '<$ = data.image $>' />
 		<div>
-			<p>Zimlet : <$=data.name$></p>
-			<p>Description : <$=data.description$></p>
-			<p>version : <$=data.version$></p>
+			<p> Zimlet: <$=data.name$> </p>
+			<p> Description: <$=data.description$> </p>
+			<p> version: <$=data.version$> </p>
 		</div>
 	</template>
-* le template identifié : *"startmeeting"* représente le message text/html  qui sera utilisé pour formater la zone de text de la réunion avec les identifiants de connexion.
+* the template identified: * "startmeeting" * represents the text / html message which will be used to format the text zone of the meeting with the connection identifiers.
 
-* le template identifié : *"startmeeting_text"* représente la version text/plain du messsage précédent qui sera utilisé si l'éditeur Zimbra est mode text/plain.
+* the template identified: * "startmeeting_text" * represents the text / plain version of the previous message which will be used if the Zimbra editor is in text / plain mode.
 
-## Activation, désactivation et mode simulation
-* Il est possible de definir 3 modes de fonctionnement de la zimlet à partir des clefs du fichier *fr_cd21_startmeeting.properties*, ainsi que le temps de réponse accordé au webservice lifesize.
+## Activation, deactivation and simulation mode
+* It is possible to define 3 zimlet operating modes from the keys of the * fr_cd21_startmeeting.properties * file, as well as the response time granted to the lifesize webservice.
 
-	```bash
-	# 0 : désactivé (valeur par défaut si non précisé), 
-	# 1 : debug (simulattion pas d'appel au websertvice) 
-	# 2 : running (en fonctionement)
-	StartMeetingZimlet_lifeSizeRunning=2
+	`` bash
+	# 0: disabled (default value if not specified), 
+	# 1: debug (simulation no call to the websertvice) 
+	# 2: running (in operation)
+	StartMeetingZimlet_lifeSizeRunning = 2
 	#
-	# Temp de réponse du webservice lifesize en ms
-	StartMeetingZimlet_lifeSizeTimeout=5000
-	```
+	# Response time of the lifesize webservice in ms
+	StartMeetingZimlet_lifeSizeTimeout = 5000
+	`` ``
 	
-* Le mode simulation permet de mettre au point la zimlet sans appeler le webservive et réserver des salles virtuelles inutilement.
+* The simulation mode allows you to debug the zimlet without calling the webservive and reserving virtual rooms unnecessarily.
 	
-* Ce fichier de propriété n'oblige pas une désinstallation de la zimlet pour être pris en compte si des modification sont appporté en production. Un simple déploiement suffit.
+* This property file does not require an uninstallation of the zimlet to be taken into account if modifications are made in production. A simple deployment is enough.
 
-* Le changement de mode de fonctionnement de la zimlet peut être réalisé directement depuis le navigateur dans la console des outils de développement avec
-la commande : StartMeeting.lifeSizeRunning=*0,1 ou 2*
+* Changing the zimlet operating mode can be done directly from the browser in the developer tools console with
+the command: StartMeeting.lifeSizeRunning = * 0,1 or 2 *
 
-![Zimlet mode fonctionnement](ressources/zimlet-image5.png)
+! [Zimlet operating mode] (resources / zimlet-image5.png)
 
-## Encodage
-* Tous les fichiers doivent être encodés en UTF-8 without bom, à l'exception des jsp, qui utilisent l'encodagee ISO-8859-1.
+## Encoding
+* All files must be encoded in UTF-8 without bom, except jsp, which use ISO-8859-1 encoding.
 
-## Convention de nommage
-* Cette zimlet à été développé pour le Conseil Départemental de la Côte-d'Or. Le nommage des fichiers et des objets sont préfixés avec *cd21*. Il est conseillé de l'adapter en changeant tout ou partie du nom en fonction du context d'utilisation.
+## Naming convention
+* This zimlet was developed for the Departmental Council of Côte-d'Or. The names of files and objects are prefixed with * cd21 *. It is advisable to adapt it by changing all or part of the name according to the context of use.
 
-# Outils de développement
-* J'ai personnellement une préférence pour Eclipse (version 2020-12 - Eclipse IDE for Enterprise Java Developers) pour bénéficier d'un environnement de développement adapté.
-* Tout autre editeur de texte respectant l'encodage préconisé.
+# Development tools
+* I personally have a preference for Eclipse (version 2020-12 - Eclipse IDE for Enterprise Java Developers) to benefit from a suitable development environment.
+* Any other text editor respecting the recommended encoding.
 	
-## Création de l'archive
-* Le déploiement pour zimbra necéssite de construire une archive (zip) qui sera téléchargée sur le serveur via l'interface d'administration.
-* **Attention** la structure de l'archive généré doit respecter la normalisation des zimlets. voir https://wiki.zimbra.com/wiki/Zimlet_Developers_Guide:Getting_Started
+## Creation of the archive
+* Deployment for zimbra requires building an archive (zip) which will be uploaded to the server via the administration interface.
+* ** Warning ** the structure of the generated archive must respect the standardization of zimlets. see https://wiki.zimbra.com/wiki/Zimlet_Developers_Guide:Getting_Started
 
-![Zimlet déploiement](ressources/zimlet-image2.png)
+! [Zimlet deployment] (resources / zimlet-image2.png)
 
-* Le fichier *package.xml* décrit la structure ainsi que les fichiers à incorporrer dans l'archive. Il est exécutable depuis une console ou Eclipse en utilisant *Ant* pour produire un zip. Il faudra adapter ce scripte au context pour la génération du fichier final.
+* The * package.xml * file describes the structure as well as the files to be incorporated into the archive. It is executable from a console or Eclipse using * Ant * to produce a zip. This script will have to be adapted to the context for the generation of the final file.
 
-	<zip destfile="${workspace.dir}/_ZimbraIntegration_/dist/fr_cd21_startmeeting.zip"
-	 	basedir="${workspace.dir}/${project.name}"
-	 	includes="**/*.*"
-	 	excludes=".project, .settings/**,old/** package.xml">
+	<zip destfile = "$ {workspace.dir} / _ ZimbraIntegration_ / dist / fr_cd21_startmeeting.zip"
+	 	basedir = "$ {workspace.dir} / $ {project.name}"
+	 	includes = "** / *. *"
+	 	excludes = ". project, .settings / **, old / ** package.xml">
 	</zip>
 
-## Configuration Zimbra
-* L'installation de la zimlet nécessite de configurer zimbra pour autoriser les clients à appeler le webervice *lifesizecloud.com* par l'intermédiaire du proxy zimbra.
-* Cette configuration est réalisée directement depuis le serveur Zimbra en ligne de commande.
-* **Remarque :** L'autorisation d'utilisation du domaine pour un compte ne semble pas fonctionner avec notre version de Zimbra. L'autorisation est définie au niveau de la *COS*.
+## Zimbra configuration
+* Installing the zimlet requires configuring zimbra to allow clients to call the * lifesizecloud.com * webervice through the zimbra proxy.
+* This configuration is performed directly from the Zimbra command line server.
+* ** Note: ** Authorization to use domain for an account does not seem to work with our version of Zimbra. Authorization is defined at the * COS * level.
 
-```bash
+`` bash
   su - zimbra
-  zmprov mc cos-domaine-dsi +zimbraProxyAllowedDomains *.lifesizecloud.com
-  # pour une personne (mais ne fonctionne pas)
-  # zmprov ma nicolas.Lavoillotte@domaine.fr +zimbraProxyAllowedDomains *.lifesizecloud.com(ne fonctionne pas!)
+  zmprov mc cos-domain-dsi + zimbraProxyAllowedDomains * .lifesizecloud.com
+  # for one person (but does not work)
+  # zmprov ma nicolas.Lavoillotte@domaine.fr + zimbraProxyAllowedDomains * .lifesizecloud.com (does not work!)
    
-  # vérification :
-  zmprov gc cos-domaine-dsi | grep zimbraProxyAllowedDomains
-  zimbraProxyAllowedDomains: *.lifesizecloud.com
-  ```
+  # check:
+  zmprov gc cos-domain-dsi | grep zimbraProxyAllowedDomains
+  zimbraProxyAllowedDomains: * .lifesizecloud.com
+  `` ``
   
-* ou depuis l'interface d'administration
-![Zimlet autorisation](ressources/zimlet-image3.png)
+* or from the administration interface
+! [Zimlet permission] (resources / zimlet-image3.png)
 
-* Rechargement du mailstore pour prendre en compte les changements
+* Reloading the mailstore to take into account the changes
 
-```bash
+`` bash
   su - zimbra
   zmmailboxdctl restart
-  ```
+  `` ``
 
-## Déploiement et mise à jour
-* Le déploiement sera réalisé directement depuis l'interface d'administration. Avec l'option déployer dans la configuration du serveur Zimbra, section Zimlet.
+## Deployment and update
+* The deployment will be carried out directly from the administration interface. With the deploy option in the Zimbra server configuration, Zimlet section.
 
-![Zimlet réservation](ressources/zimlet-image2.png)
+! [Zimlet reservation] (resources / zimlet-image2.png)
 
-* **Remarque :** Si des modifications sont apportées dans le fichier *config_template.xml* après déploiement, et pour qu'elles soient prisent en compte, il faudra recharger la configuration avec la commmande zimbra :
+* ** Note: ** If modifications are made to the * config_template.xml * file after deployment, and for them to be taken into account, the configuration will have to be reloaded with the zimbra command:
 
-```bash
+`` bash
   su - zimbra
-  # extraction de la configuration
+  # extract the configuration
   zmzimletctl getConfigTemplate fr_cd21_startmeeting.zip
-  # installation de la configuration
+  # installation of the configuration
   zmzimletctl configure config_template.xml
-  ```
+  `` ``
   
 
-![Zimlet réservation](ressources/zimlet-image4.png)
-
+! [Zimlet reservation] (resources / zimlet-image4.png)
